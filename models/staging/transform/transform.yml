@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: L1_national
+    description: Names on the national level - simple data cleaning.
+    columns: 
+      - name: name_national_id
+        description: Primary key for names on the national level.
+        tests:
+          - unique
+          - not_null
+
+  - name: L1_state
+    description: Names on the state level - simple data cleaning.
+    columns:
+      - name: name_state_id
+        description: Primary key for names on the state level.
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: Foreign key to L1_national.name.
+        tests:
+          - relationships:
+              to: ref('L1_national')
+              field: Name
+
+  - name: L2_national
+    description: Names on the national level - business logic implementation.
+    columns: 
+      - name: name_national_id
+        description: Primary key for names on the national level.
+        tests:
+          - unique
+          - not_null
+  
+  - name: L2_state
+    description: Names on the state level - business logic implementation.
+    columns:
+      - name: name_state_id
+        description: Primary key for names on the state level.
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: Foreign key to L2_national.name.
+        tests:
+          - relationships:
+              to: ref('L2_national')
+              field: Name

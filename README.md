@@ -1,15 +1,17 @@
-Welcome to a new dbt project using BigQuery as the data platform!
+We want to implement an efficient solution for the problem described in the previous section. 
 
-### Using the starter project
+As an initial dataset, you should use US Baby Names.The solution should consist of:
 
-Try running the following commands:
-- dbt run
-- dbt test
+- Design data model for a data warehouse that could answer questions such as:
+    - How did the name Ida change period-over-period nationally?
+    - How did the name Ida change period-over-period in California?
+    - What name is most unisex?
+    - What names on the national level are too scarce on the state level?
 
+- A data pipeline for Exporting data from the provided dataset, Transforming them and Loading them to the database regularly.
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](http://slack.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+- An intuitive analytical dashboard to visualize insights such as:
+    - Top 10 trending names
+    - Top 10 states in newborns
+    - Map with top names
+
