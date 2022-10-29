@@ -1,4 +1,4 @@
-{{ config(schema='transform', materialized='table') }}
+/* {{ config(schema='transform', materialized='table') }} */
 
 SELECT
    MD5(`Id`) AS name_national_id,

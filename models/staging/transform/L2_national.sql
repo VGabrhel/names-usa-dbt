@@ -1,5 +1,7 @@
 {{ config(schema='transform', materialized='table') }}
 
+/* Identify unisex names */
+
 WITH cte_unisex_name AS (
 SELECT DISTINCT 
       name 
