@@ -18,28 +18,30 @@ As an initial dataset, you should use [US Baby Names](https://www.kaggle.com/dat
     - Map with top names
 
 # Solution 
-- Due to the intention of deploying the solution to a cloud, I decided to develop the proposed solution directly in one of the existing cloud computing platforms, namely Google Cloud Platform. Here, 
-
+- Due to the intention of deploying the solution to a cloud, I decided to develop the proposed solution directly in one of the existing cloud computing platforms, namely Google Cloud Platform.
 
 ## Design
--   
 
+- You may find the solution proposed in a form of a schema:   
 ![Schema](https://storage.googleapis.com/baby-names-usa-1/us_baby_name.png)
 
 ## Data Lake
-- Google Cloud Storage is used as a data lake
+- Google Cloud Storage (GCS) is used as a data lake
     - [National](https://storage.googleapis.com/baby-names-usa-1/NationalNames.csv)
     - [State](https://storage.googleapis.com/baby-names-usa-1/NationalNames.csv)
+- At this point, the data are extracted from the GCS via a cron job.
 
 ## Data Warehouse
 - BigQuery serves as the data warehouse of choice. Here, three schemas exists: 
     a) Extract (raw data)
     b) Transform - L1 (initial data cleaning) and L2 (business logic implementation) transformations
     c) Data Marts - pre-calculated tables for different use-cases
-- In adddition, [dbt](https://www.getdbt.com/) is used as a tool performing needed data transformations along with several key features (e.g., unit testing, data lineage or documentation)
+- In adddition, [dbt](https://www.getdbt.com/) is used as a tool performing needed data transformations along with several key features (e.g., unit testing, data lineage or documentation).
+- At this point, data are transformed in the GCP via a cron job.
 
 ## Vizualization
 - Due to the easy integration with the rest of the GCP stack, the output data sources are linked to [Google Data / Looker Studio](https://datastudio.google.com/reporting/067fe3fa-186a-4798-b1d4-77157bec4466)
+    - The data are refreshed on a regular basis.
 
 ## Next Steps 
 - Establish the extract part based on the preferred source - one option would be a scraper using the [US Social Security](https://www.ssa.gov/oact/babynames/).
