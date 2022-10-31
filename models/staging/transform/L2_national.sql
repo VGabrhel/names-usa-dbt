@@ -6,7 +6,7 @@ WITH cte_unisex_name AS (
 SELECT DISTINCT 
       name 
     FROM 
-      {{ source('transform', 'L1_national') }}
+      {{ ref('L1_national') }}
     GROUP BY 
       name  
     HAVING 
@@ -20,7 +20,7 @@ SELECT
         ELSE 0
    END AS is_unisex
 FROM 
-   {{ source('transform', 'L1_national') }} AS L1
+   {{ ref('L1_national') }} AS L1
 LEFT JOIN 
     cte_unisex_name
         ON cte_unisex_name.name = L1.name
