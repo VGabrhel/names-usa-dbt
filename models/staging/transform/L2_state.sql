@@ -1,11 +1,12 @@
 {{ config(schema='transform', materialized='table') }}
 
 /* Identify unisex names */
+
 WITH cte_unisex_name AS (
 SELECT DISTINCT 
       name 
     FROM 
-      {{ source('transform', 'L1_state') }}
+      {{ ref('L1_state') }}
     GROUP BY 
       name  
     HAVING 
@@ -19,7 +20,7 @@ SELECT
         ELSE 0
    END AS is_unisex
 FROM 
-   {{ source('transform', 'L1_state') }} AS L1
+   {{ ref('L1_state') }} AS L1
 LEFT JOIN 
     cte_unisex_name
         ON cte_unisex_name.name = L1.name
